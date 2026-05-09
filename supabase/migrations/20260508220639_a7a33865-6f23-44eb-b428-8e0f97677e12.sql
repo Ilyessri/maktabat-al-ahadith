@@ -1,0 +1,1 @@
+ALTER FUNCTION public.hadiths_search_trigger() SET search_path = public;

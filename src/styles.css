@@ -1,0 +1,320 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Arabic + display fonts */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-arabic: "Amiri", "Scheherazade New", serif;
+  --font-display: "Cormorant Garamond", "Amiri", serif;
+  --font-scheherazade: "Scheherazade New", "Amiri", serif;
+}
+
+:root {
+  /* Palette alignée sur la maquette HTML (مكتبة الأحاديث) */
+  --radius: 0.75rem;
+  --green-deep: #1b4332;
+  --green-mid: #2d6a4f;
+  --gold-ref: #b8860b;
+  --gold-light-ref: #d4a843;
+  --gold-pale: #f9f0dc;
+  --gold-border-ref: rgba(184, 134, 11, 0.28);
+  --cream: #fafaf5;
+  --text-main: #1a1208;
+  --text-muted-ref: #6b5533;
+  --text-hint-ref: #9b885e;
+
+  --background: var(--cream);
+  --foreground: var(--text-main);
+
+  --card: #ffffff;
+  --card-foreground: var(--text-main);
+
+  --popover: #ffffff;
+  --popover-foreground: var(--text-main);
+
+  --primary: var(--green-deep);
+  --primary-foreground: #f5edd4;
+
+  --secondary: #f3edd8;
+  --secondary-foreground: var(--green-deep);
+
+  --muted: #efefea;
+  --muted-foreground: var(--text-muted-ref);
+
+  --accent: var(--gold-pale);
+  --accent-foreground: var(--green-deep);
+
+  --gold: var(--gold-ref);
+  --gold-foreground: #6b4a00;
+
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: rgba(184, 134, 11, 0.22);
+  --input: rgba(184, 134, 11, 0.22);
+  --ring: var(--green-deep);
+
+  --gradient-emerald: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+  --gradient-gold-stripe: linear-gradient(
+    90deg,
+    var(--green-deep),
+    var(--gold-light-ref),
+    var(--gold-ref),
+    var(--gold-light-ref),
+    var(--green-deep)
+  );
+  --gradient-gold: linear-gradient(135deg, var(--gold-light-ref), var(--gold-ref));
+  --shadow-soft: 0 4px 24px rgba(27, 67, 50, 0.18);
+  --shadow-card: 0 2px 12px rgba(27, 67, 50, 0.07);
+}
+
+.dark {
+  --background: oklch(0.16 0.025 158);
+  --foreground: oklch(0.95 0.015 90);
+  --card: oklch(0.2 0.03 158);
+  --card-foreground: oklch(0.95 0.015 90);
+  --popover: oklch(0.2 0.03 158);
+  --popover-foreground: oklch(0.95 0.015 90);
+  --primary: oklch(0.78 0.14 85);
+  --primary-foreground: oklch(0.18 0.03 158);
+  --secondary: oklch(0.26 0.04 158);
+  --secondary-foreground: oklch(0.95 0.015 90);
+  --muted: oklch(0.24 0.03 158);
+  --muted-foreground: oklch(0.7 0.025 90);
+  --accent: oklch(0.3 0.05 158);
+  --accent-foreground: oklch(0.95 0.015 90);
+  --gold: oklch(0.78 0.14 85);
+  --gold-foreground: oklch(0.18 0.03 158);
+  --border: oklch(0.3 0.04 158);
+  --input: oklch(0.3 0.04 158);
+  --ring: oklch(0.78 0.14 85);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { direction: rtl; scroll-behavior: smooth; }
+  body {
+    background-color: var(--cream);
+    color: var(--text-main);
+    font-family: var(--font-arabic);
+    min-height: 100vh;
+    text-align: right;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(184, 134, 11, 0.06) 39px,
+        rgba(184, 134, 11, 0.06) 40px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 39px,
+        rgba(184, 134, 11, 0.06) 39px,
+        rgba(184, 134, 11, 0.06) 40px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+  h1, h2, h3 { font-family: var(--font-arabic); letter-spacing: 0; }
+}
+
+/* Decorative arabesque divider using SVG-style border */
+.arabesque-divider {
+  background-image:
+    linear-gradient(to right, transparent, var(--gold), transparent);
+  height: 1px;
+  position: relative;
+}
+.arabesque-divider::before {
+  content: "❋";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background);
+  padding: 0 0.75rem;
+  color: var(--gold);
+  font-size: 0.875rem;
+}
+
+/* Gold ornament corners for cards */
+.ornament-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, var(--border));
+  box-shadow: var(--shadow-card);
+}
+.ornament-card::before, .ornament-card::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--gold);
+  opacity: 0.7;
+}
+.ornament-card::before { top: -1px; right: -1px; border-bottom: none; border-left: none; border-top-right-radius: var(--radius); }
+.ornament-card::after  { bottom: -1px; left: -1px; border-top: none; border-right: none; border-bottom-left-radius: var(--radius); }
+
+.text-arabic { font-family: var(--font-arabic); line-height: 2.1; }
+.text-display { font-family: var(--font-display); }
+
+.bg-emerald-gradient { background-image: var(--gradient-emerald); }
+.bg-gold-gradient { background-image: var(--gradient-gold); }
+
+/* En-tête / pied de page — maquette مكتبة الأحاديث */
+.hadith-page-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin-inline: auto;
+  padding: 2rem 1rem 3rem;
+}
+
+@media (max-width: 600px) {
+  .hadith-page-wrap {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  .hadith-site-header {
+    padding: 1.75rem 1.25rem 1.25rem;
+  }
+}
+
+.hadith-site-header {
+  background: var(--green-deep);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 2.5rem 2.5rem 1.75rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  color: var(--primary-foreground);
+}
+
+.hadith-site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(212, 168, 67, 0.12) 0%, transparent 60%),
+    repeating-conic-gradient(rgba(212, 168, 67, 0.04) 0deg 10deg, transparent 10deg 20deg);
+  pointer-events: none;
+}
+
+.hadith-header-emblem {
+  font-size: 2.625rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  position: relative;
+  filter: drop-shadow(0 2px 8px rgba(212, 168, 67, 0.4));
+}
+
+.hadith-header-title {
+  font-family: var(--font-scheherazade);
+  color: #f5edd4;
+  font-size: clamp(1.5rem, 5vw, 1.875rem);
+  font-weight: 700;
+  position: relative;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.35;
+}
+
+.hadith-header-sub {
+  color: rgba(212, 168, 67, 0.75);
+  font-size: 0.875rem;
+  margin-top: 6px;
+  position: relative;
+  letter-spacing: 0.8px;
+  font-family: var(--font-arabic);
+}
+
+.hadith-header-ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 14px;
+  position: relative;
+}
+
+.hadith-ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.5), transparent);
+  max-width: 120px;
+}
+
+.hadith-ornament-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold-light-ref);
+  transform: rotate(45deg);
+}
+
+.hadith-gold-stripe {
+  height: 4px;
+  background: var(--gradient-gold-stripe);
+}
+
+.hadith-site-footer {
+  background: var(--green-deep);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(27, 67, 50, 0.12);
+}
+
+.hadith-footer-ayah {
+  font-family: var(--font-scheherazade);
+  color: rgba(212, 168, 67, 0.85);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.hadith-footer-ref {
+  font-size: 0.6875rem;
+  color: rgba(212, 168, 67, 0.45);
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+.text-hadith-body {
+  font-family: var(--font-scheherazade);
+}

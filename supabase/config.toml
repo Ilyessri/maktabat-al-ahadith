@@ -1,0 +1,4 @@
+project_id = "clpdqncyebjfrmygceai"
+
+[functions.get-synonyms]
+verify_jwt = false
